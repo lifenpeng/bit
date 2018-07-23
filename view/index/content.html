@@ -1,0 +1,35 @@
+<ul class="list-group">
+        <li class="list-group-item" ng-repeat="v in arr">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">{{v.title}}</h3>
+              </div>
+              <div class="panel-body">
+                  <p class="text-center"><span>来源：{{v.from}}</span><span>时间：{{v.time}}</span></p>
+                  {{v.main}}
+                  <button type="button" class="btn btn-info">阅读全文</button>
+              </div>
+            </div>          
+          </li>                
+      </ul>
+      <p class="text-center" id="pos">
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </p>

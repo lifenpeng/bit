@@ -31,14 +31,8 @@ if ($result->num_rows > 0) {
     echo "0 结果";
 }
 
-$arr = array();
-
-foreach($article as $v){
-   array_push($arr,$v);
-}
-
 if($_GET['msg']==1){
-    $datas = ['data'=>$arr];
+    $datas = ['data'=>$article];
     echo json_encode($datas);
 }else{
     $datas = ['data'=>'请求参数错误'];

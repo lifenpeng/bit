@@ -1,4 +1,4 @@
-var app = angular.module('lfp-app',[]);
+var app = angular.module('lfp-app',['ngRoute']);
 app.controller('myApp',['$scope','$http',function($scope,$http){
     $http({
         method:'POST',
@@ -12,3 +12,4 @@ app.controller('myApp',['$scope','$http',function($scope,$http){
         console.log('err');
     })
 }])
+

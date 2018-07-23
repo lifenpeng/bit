@@ -4,118 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>angularJs</title>
+    <title>点滴生活</title>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
 </head>
 <body ng-controller="myApp">
-  <div class="page-header">
-    <h1>人生要用简单的心境，对待复杂的人生，最无情的不是人，是时间</h1>
-  </div>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>            
-              <a class="navbar-brand" href="#">点滴生活</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li><a href="#">首页</a></li>
-                <li><a href="#">技术收藏</a></li>
-                <li><a href="#">乱七八糟</a></li>
-              </ul>
-            </div>
-        </div>
-        <div class="col-md-2"></div>
-      </div>
-    </div>
-  </nav>
+
+  <!-- 头部HTML文件 -->
+
+  <div ng-include="'./view/index/header.html'"></div>
+
+  <!-- 内容HTML文件 -->
 
   <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-6">
-      <ul class="list-group">
-        <li class="list-group-item" ng-repeat="v in arr">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">{{v.title}}</h3>
-              </div>
-              <div class="panel-body">
-                  <p class="text-center"><span>来源：{{v.from}}</span><span>时间：{{v.time}}</span></p>
-                  {{v.main}}
-                  <button type="button" class="btn btn-info">阅读全文</button>
-              </div>
-            </div>          
-          </li>                
-      </ul>
-      <p class="text-center" id="pos">
-        <nav aria-label="Page navigation">
-          <ul class="pagination">
-            <li>
-              <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-              <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </p>
-    </div>
-    <div class="col-md-2">
-        <div class="panel panel-info">
-            <div class="panel-body">登录</div>
-            <div class="panel-footer">
-                <p class="text-center">
-                  <button type="button" class="btn btn-default">登录</button>
-                  <button type="button" class="btn btn-default">注册</button>
-                </p>
-            </div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-footer">
-                <h3 class="panel-title">文章搜索</h3>
-                <form class="form-inline">
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="exampleInputName2" placeholder="文章搜索">
-                    </div>
-                    <button type="submit" class="btn btn-info">搜索</button>
-                </form>
-            </div>
-        </div>        
-    </div>
+    <!-- 主页列表 -->
+    <div class="col-md-6" ng-view></div>
+    <!-- 右边登录 搜索 -->
+    <div class="col-md-2" ng-include="'./view/index/right.html'"></div>
     <div class="col-md-2"></div>
   </div>
 
+  <!-- 尾部HTML文件 -->
+  
+  <div ng-include="'./view/index/footer.html'"></div>
 
-  <div class="panel panel-default footer-margin">
-      <div class="panel-body">
-          <p class="text-center">友情链接：<span></span><span></span><span></span></p>
-          <p class="text-center"><span>Copyright © 点滴生活</span><span class="text-margin">|</span><span>蒙ICP备18001652号-1</span></p>
-      </div>
-  </div>
+  <!-- JS部分 -->
 
-  <script src="/public/angular.min.js"></script>
+  <script src="/js/angular.min.js"></script>
+  <script src="/js/angular-route.min.js"></script>
   <script src="/controller/index.js"></script>
-  <script src="/public/jquery.min.js"></script>
-  <script src="/public/bootstrap.min.js"  crossorigin="anonymous"></script>
+  <script src="/controller/route.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"  crossorigin="anonymous"></script>
 
 </body>
 </html>
