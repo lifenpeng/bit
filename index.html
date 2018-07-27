@@ -19,7 +19,7 @@
   <div class="row">
     <div class="col-md-2"></div>
     <!-- 主页列表 -->
-    <div class="col-md-6" ng-view></div>
+    <div class="col-md-6" ui-view></div>
     <!-- 右边登录 搜索 -->
     <div class="col-md-2" ng-include="'./view/index/right.html'"></div>
     <div class="col-md-2"></div>
@@ -32,9 +32,11 @@
   <!-- JS部分 -->
 
   <script src="/js/angular.min.js"></script>
-  <script src="/js/angular-route.min.js"></script>
+  <script src="/js/ui-route.js"></script>
   <script src="/controller/index.js"></script>
   <script src="/controller/route.js"></script>
+  <script src="/controller/services.js"></script>
+  <script src="/controller/app.js"></script>
   <script src="/js/jquery.min.js"></script>
   <script src="/js/bootstrap.min.js"  crossorigin="anonymous"></script>
 

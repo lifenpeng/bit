@@ -1,6 +1,9 @@
-app.config(['$routeProvider', function($routeProvider){
-    $routeProvider.when('/index',{
-        templateUrl:'./view/index/content.html',
-        controller:'myApp'
-    }).otherwise({redirectTo:'/index'});
-}])
+app.config(function($stateProvider){
+    $stateProvider.state('index',{
+      url:'',
+      templateUrl:'./view/index/content.html'
+    }).state('article',{
+      url:'/article/?id',
+      templateUrl:'./view/article/article.html'
+    })
+});

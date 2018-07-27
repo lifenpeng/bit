@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>d3js</title>
+    <script src="d3.js"></script>
+</head>
+<body>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <p>hello</p>
+    <p>hello</p>
+    <div id="demon"></div>
+    <div id="demon1"></div>
+    <script>
+    var p = d3.select('body').selectAll('p').text('你好');
+    p.style({
+        'color':'blue',
+        'font-size':'18px'
+    });
+
+    var str = ['beijing','shanghai','guangzhou'];
+    var h1 = d3.selectAll('h1');
+    h1.data(str);
+    h1.text(function(d,i){
+        return '第'+i+'数据是：'+d;
+    })
+
+    var width = 300;
+    var height = 300;
+    var datas = [1.2, 2.3, 0.9, 1.5, 3.3];
+
+    //比例尺 将 dataset 中最小的值，映射成 0；将最大的值，映射成 300。
+    //比例尺的定义域 domain 为：[0.9, 3.3]
+    // 比例尺的值域 range 为：[0, 300]
+    // 因此，当输入 0.9 时，返回 0；当输入 3.3 时，返回 300。当输入 2.3 时呢？返回 175，这是按照线性函数的规则计算的。
+    // 有时候，定义域和值域不一定是连续的。例如，有两个数组：
+    // var index = [0, 1, 2, 3, 4];
+    // var color = ["red", "blue", "green", "yellow", "black"];
+    // 我们希望 0 对应颜色 red，1 对应 blue，依次类推。
+
+    // 但是，这些值都是离散的，线性比例尺不适合，需要用到序数比例尺。
+
+    // var ordinal = d3.scale.ordinal()
+    //         .domain(index)
+    //         .range(color);
+
+    // ordinal(0); //返回 red
+    // ordinal(2); //返回 green
+    // ordinal(4); //返回 black
+    // 用法与线性比例尺是类似的。
+
+    var min = d3.min(datas);
+    var max = d3.max(datas);
+
+    //scale 指定添加一个比例尺
+
+    var linear = d3.scale.linear().domain([min,max]).range([0,300]);
+
+    console.log(linear(0.9),linear(3.3),);
+
+    var linears = d3.scale.linear()
+      .domain([0, d3.max(datas)])
+      .range([0, 300]);
+
+
+    var svg = d3.select('#demon').append('svg').attr({
+        'width':width,
+        'height':height
+    });
+
+    var rectHeight = 25;
+
+    svg.selectAll('rect')
+    .data(datas)
+    .enter()
+    .append('rect')
+    .attr('x',0)
+    .attr('y',function(d,i){
+        return i * rectHeight;
+    })
+    .attr('width',function(d){
+        return linear(d);
+    })
+    .attr('height',rectHeight-2)
+    .attr('fill','steelblue');
+
+    //D3 提供了一个组件：d3.svg.axis()
+    //orient 指明刻度方向 
+    //ticks 指明刻度数量
+
+    var axis = d3.svg.axis().scale(linears).orient('bottom').ticks(6);
+
+    svg.append("g")
+    .attr("transform","translate(0,130)")//坐标轴位置
+    .call(axis);
+
+    var svg1 = d3.select('#demon1').append('svg').attr({
+        'width':width,
+        'height':height
+    });
+
+    var circle1 = svg1.append('circle').attr('cx',50).attr('cy',100).attr('r',20).style('fill','red');
+
+    circle1.transition().duration(3000).ease("bounce").attr('cx',180).attr('r',60);
+
+    circle1.on('mouseover',function(){
+        d3.select(this).transition().duration(3000).ease("bounce").attr('r',30).style('fill','blue');
+    })
+
+    circle1.on('mouseout',function(){
+        d3.select(this).transition().duration(3000).ease("bounce").attr('r',60).style('fill','red');
+    })
+
+    </script>
+</body>
+</html>
