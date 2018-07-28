@@ -1,6 +1,7 @@
-app.config(function($stateProvider){
+app.config(function($stateProvider,$urlRouterProvider){
+    $urlRouterProvider.otherwise('index');
     $stateProvider.state('index',{
-      url:'',
+      url:'/index',
       templateUrl:'./view/index/content.html'
     }).state('article',{
       url:'/article/?id',
