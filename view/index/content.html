@@ -2,7 +2,7 @@
     <li class="list-group-item" ng-repeat="v in arr">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">{{v.title}}</h3>
+            <h3 class="panel-title" id="hover" data-id="{{v.id}}" ng-click="getId()">{{v.title}}</h3>
           </div>
           <div class="panel-body">
               <p class="text-center"><span>来源：{{v.from}}</span><span>时间：{{v.time}}</span></p>

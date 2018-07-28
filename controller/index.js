@@ -1,11 +1,9 @@
 var app = angular.module('lfp-app',['ui.router']);
 app.controller('myApp',['$scope','$location','indexData','$state',function($scope,$location,indexData,$state){
 	
-    if($location.url()=='/index'){
-        indexData.then(function(data){
-            $scope.arr = data.data;
-        }) 
-    }
+    indexData.then(function(data){
+        $scope.arr = data.data;
+    }) 
 
     $scope.getId = function(){
        $scope.id =  angular.element(this)[0].v['id']; 

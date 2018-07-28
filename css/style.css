@@ -1,3 +1,7 @@
+#hover {
+  cursor: pointer;
+}
+
 html{
   padding: 0px;
   margin: 0px;
