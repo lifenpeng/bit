@@ -27,16 +27,12 @@ app.controller('myApp',['$scope','$location','$state','data',function($scope,$lo
         //获取要显示页数
         $scope.pageNum = angular.element(this)[0].v;
         //获取该页数据
-        data.getPage($scope.pageNum).then(function(data){
-            $scope.arr = data.data;
-        })          
+        artData($scope.pageNum);         
     }
     
     //获取第一页数据  默认显示
     if($scope.flag){
-        data.getPage(1).then(function(data){
-            $scope.arr = data.data;
-        })     
+        artData(1);
     }
 
     //获取某条文章详细信息 跳转到文章模块
@@ -47,7 +43,15 @@ app.controller('myApp',['$scope','$location','$state','data',function($scope,$lo
 
     //回到首页事件
     $scope.goIndex = function(){
-        $state.go('index');
+        artData(1);
+        $location.url('/index');
+    }
+
+    //获取文章数据
+    function artData(v){
+        data.getPage(v).then(function(data){
+            $scope.arr = data.data;
+        })  
     }
 
 }])
