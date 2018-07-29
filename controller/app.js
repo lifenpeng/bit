@@ -1,8 +1,8 @@
-app.controller('article',['$scope','indexData','$sce','$location','$state',function($scope,indexData,$sce,$location,$state){
+app.controller('article',['$scope','data','$sce','$location','$state',function($scope,data,$sce,$location){
     var arr = [];
     var datas  = [];
 	
-    indexData.then(function(data){
+    data.article().then(function(data){
         arr = data.data;
 
         //console.log(arr);
