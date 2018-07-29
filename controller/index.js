@@ -22,12 +22,35 @@ app.controller('myApp',['$scope','$location','$state','data',function($scope,$lo
     $scope.flag =true;
 
     //分页点击事件
-    $scope.goPage = function(){
-        $scope.flag = false;
+    $scope.goPage = function(v){
         //获取要显示页数
-        $scope.pageNum = angular.element(this)[0].v;
-        //获取该页数据
-        artData($scope.pageNum);         
+        $scope.pageNum = angular.element(this)[0].v||1;
+
+        $scope.flag = false; 
+        
+        var next;
+  
+        if(v==2){ //下一页
+            init();
+            next>0&&next<$scope.size.length?next =parseInt(next)+1:next;
+            artData(parseInt(next)); 
+        }else if(v==1){ //上一页
+            init();
+            next>1&&next<$scope.size.length+1?next =parseInt(next)-1:next;
+            artData(parseInt(next));             
+        }else{
+            //获取该页数据
+            artData($scope.pageNum);   
+        }
+        //上下页初始化数据
+        function init(){
+            if($scope.pageNum>1){
+                sessionStorage.setItem('next', $scope.pageNum);
+            }else{
+                sessionStorage.setItem('next', 1);
+            } 
+            next = sessionStorage.getItem('next');
+        }
     }
     
     //获取第一页数据  默认显示
